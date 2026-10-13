@@ -1,48 +1,60 @@
-# CasaQuest
+# 🏠 CasaQuest
 
-Web app doméstica gamificada para dos personas.
+**Convierte las tareas de casa en una aventura para dos.**
 
-## Desarrollo
+CasaQuest es una PWA doméstica gamificada: cada tarea da monedas, las monedas desbloquean recompensas y las metas comunes convierten el mantenimiento de la casa en un pequeño juego cooperativo.
+
+## ✨ Ahora incluye
+
+- Dos perfiles: Brais y Noa.
+- Puntos personales + bote común.
+- Misiones por habitaciones/categorías.
+- Tienda de recompensas personales y para dos.
+- Niveles, XP y rachas.
+- Historial de actividad.
+- Estadísticas y objetivo semanal.
+- Diseño responsive y PWA instalable.
+- Persistencia local con `localStorage`.
+- Cliente Supabase preparado para sincronización en nube.
+- Esquema SQL de Supabase en `supabase/schema.sql`.
+- GitHub Actions preparado para GitHub Pages.
+
+## 🚀 Desarrollo
 
 ```bash
 npm install
 npm run dev
 ```
 
-Abre la URL que muestre Vite.
+## 🌍 GitHub Pages
 
-## Build
+El workflow de `.github/workflows/deploy.yml` construye y publica automáticamente la aplicación en cada push a `main`.
 
-```bash
-npm run build
-npm run preview
-```
+En GitHub: **Settings → Pages → Source → GitHub Actions**.
 
-## Datos
+La aplicación usa `/casaquest/` como base porque el repositorio se llama `casaquest`.
 
-Los puntos iniciales viven en:
+## ☁️ Persistencia compartida
 
-- `data/brais.json`
-- `data/noa.json`
+La aplicación funciona sin backend y guarda los cambios en el navegador. Para que Brais y Noa compartan la misma partida entre móviles, crea un proyecto gratuito en Supabase, ejecuta `supabase/schema.sql` y añade estas variables como **Repository Variables** de GitHub Actions:
 
-En esta primera versión, GitHub Pages sirve esos JSON como estado inicial y los cambios se guardan en `localStorage` del navegador. La aplicación permite exportar el JSON actual desde **Datos**.
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
 
-Esto es intencionado: GitHub Pages es hosting estático y el navegador no puede modificar los archivos del repositorio directamente. Para sincronizar puntos entre dos móviles/ordenadores habrá que añadir una base de datos (por ejemplo Supabase/Firebase).
+El cliente está en `src/lib/supabase.js`.
 
-## GitHub Pages
+La siguiente capa recomendable es una Edge Function/RPC para hacer los cambios de puntos de forma atómica y segura; nunca conviene confiar en el cliente para decidir cuánto dinero/puntos puede crear un usuario.
 
-El proyecto ya incluye `vite.config.js` con:
+## 🎨 Dirección visual
 
-```js
-base: "/casaquest/"
-```
+CasaQuest busca sentirse más como un pequeño juego acogedor que como una app corporativa: colores cálidos, tarjetas suaves, personajes, monedas, misiones y recompensas.
 
-Cambia `casaquest` por el nombre real de tu repositorio si utilizas otro.
+## 🗺️ Próximos pasos
 
-Después:
-
-1. Crea un repositorio en GitHub.
-2. Sube el contenido de esta carpeta.
-3. Ve a **Settings → Pages**.
-4. En **Build and deployment → Source**, selecciona **GitHub Actions**.
-5. Añade el workflow indicado en `DEPLOY.md`.
+1. Supabase Auth + invitación por código.
+2. Sincronización Realtime.
+3. CRUD de tareas y recompensas desde Ajustes.
+4. Misiones recurrentes automáticas.
+5. Logros y temporadas.
+6. Mascota de la casa con progresión.
+7. Notificaciones PWA.
