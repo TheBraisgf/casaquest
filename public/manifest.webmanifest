@@ -1,0 +1,11 @@
+{
+  "name":"CasaQuest",
+  "short_name":"CasaQuest",
+  "start_url":"/casaquest/",
+  "scope":"/casaquest/",
+  "display":"standalone",
+  "background_color":"#f6f2eb",
+  "theme_color":"#29262e",
+  "description":"Convierte las tareas de casa en una aventura para dos.",
+  "icons":[{"src":"/casaquest/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
